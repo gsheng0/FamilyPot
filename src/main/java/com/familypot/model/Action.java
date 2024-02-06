@@ -56,9 +56,9 @@ public class Action {
     @Override
     public String toString() {
         if (type == ActionType.BET || type == ActionType.RAISE || type == ActionType.CALL) {
-            return player.getName() + " " + type + " " + amount;
+            return "[" + player.getName() + "]: " + type + " " + amount;
         } else {
-            return player.getName() + " " + type.toString();
+            return "[" + player.getName() + "]: " + type.toString();
         }
     }
 }

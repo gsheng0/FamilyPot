@@ -24,6 +24,12 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
         List<Card[]> holeCards = CardUtils.dealHoleCards(players.size(), 2, deck);
         Card[] board = new Card[5];
 
+        for(int i = 0; i < holeCards.size(); i++) {
+            Card[] cards = holeCards.get(i);
+            fileWriter.writeln("[Player " + i + "]: \t" + cards[0] + ", " + cards[1]);
+        }
+        fileWriter.writeln("");
+
 
         List<Player> leftToAct = new ArrayList<>();
         for(int i = 2; i < players.size(); i++){
@@ -175,13 +181,14 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
             }
             fileWriter.writeln(action.toString());
         }
+        fileWriter.writeln("");
         int[] handValues = new int[holeCards.size()];
         for(int i = 0; i < board.length; i++){
             fileWriter.writeln("\t" + board[i].toString());
         }
+        fileWriter.writeln("");
         for(int i = 0; i < holeCards.size(); i++){
             Card[] cards = holeCards.get(i);
-            fileWriter.writeln("Player " + i + " \t\t" + cards[0] + ", " + cards[1]);
             Card[] hand = new Card[7];
             for(int x = 0; x < board.length; x++){
                 hand[x] = board[x];
