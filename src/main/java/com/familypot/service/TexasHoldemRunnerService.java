@@ -206,8 +206,5 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
             }
         }
         fileWriter.writeln("Player " + index + " has won with " + CardUtils.classifyHand(max));
-
-
-
     }
 }
