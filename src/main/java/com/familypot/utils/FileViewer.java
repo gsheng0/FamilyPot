@@ -11,15 +11,15 @@ public class FileViewer extends JFrame {
         setTitle("File Viewer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 800);
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            filePath = selectedFile.getAbsolutePath();
-            readFile(filePath);
-        }
-        String content = readFile(filePath);
-        System.out.println(content);
+//        JFileChooser fileChooser = new JFileChooser();
+//        int returnValue = fileChooser.showOpenDialog(null);
+//        if (returnValue == JFileChooser.APPROVE_OPTION) {
+//            File selectedFile = fileChooser.getSelectedFile();
+//            filePath = selectedFile.getAbsolutePath();
+//            readFile(filePath);
+//        }
+//        String content = readFile(filePath);
+//        System.out.println(content);
     }
 
     private String readFile(String filePath) {
@@ -37,11 +37,25 @@ public class FileViewer extends JFrame {
 
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 1200, 800);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(new Color(30, 92,58));
+        g2d.fillRect(0, 0, 1200, 800);
+
+
+        g2d.setColor(Color.BLACK);
+
+        int startX = 150;
+        int startY = 550;
+        int playerSpacing = 250;
+        int stackSize = 1000; // Placeholder stack size
+        for (int i = 0; i < 4; i++) {
+            int x = startX + i * playerSpacing;
+            g2d.drawRect(x, startY, 50, 50); // Draw player seat
+            g2d.drawString("Stack: " + stackSize, x + 5, startY + 70); // Draw stack size
+        }
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new FileViewer().setVisible(true));
+        new FileViewer().setVisible(true);
     }
 }
