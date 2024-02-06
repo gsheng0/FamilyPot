@@ -22,4 +22,12 @@ public class Player {
     }
     public int getStackSize(){ return stackSize; }
     public String getName() { return name; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Player player){
+            return player.name.equals(this.name);
+        }
+        return false;
+    }
 }

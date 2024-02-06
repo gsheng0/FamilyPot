@@ -39,28 +39,141 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
             if(action.isCall()){
                 pot += player.bet(raiseAmount);
                 callers.add(player);
-            }
-            else if(action.isRaise()){
+            } else if(action.isRaise()){
                 pot += player.bet(action.getAmount());
                 raiseAmount = action.getAmount();
                 leftToAct.addAll(callers);
                 callers = new ArrayList<>(List.of(player));
+                System.out.println();
+            } else if(action.isFold()){
+                players.remove(player);
             }
+            System.out.println(action);
         }
 
         deck.deal();
+        System.out.println("Flop comes: ");
         for(int i = 0; i < 3; i++){
             board[i] = deck.deal();
+            System.out.println("\t" + board[i]);
         }
 
-        leftToAct = callers;
+        leftToAct = new ArrayList<>(players);
         callers = new ArrayList<>();
-
+        raiseAmount = 0;
         for(int i = 0; i < leftToAct.size(); i++){
+            Player player = leftToAct.get(i);
+            List<Action> options;
+            if(raiseAmount == 0){
+                options = new ArrayList<>(Arrays.asList(
+                        Action.fold(player),
+                        Action.check(player),
+                        Action.bet(player, pot/2)));
+            } else{
+                options = new ArrayList<>(Arrays.asList(
+                        Action.fold(player),
+                        Action.call(player, raiseAmount),
+                        Action.raise(player,2 * raiseAmount)));
+            }
 
+            Action action = options.get(player.getDecider().act(options));
+            actionList.add(action);
+
+            if(action.isCall() || action.isCheck()){
+                pot += player.bet(raiseAmount);
+                callers.add(player);
+            } else if(action.isRaise() || action.isBet()){
+                pot += player.bet(action.getAmount());
+                raiseAmount = action.getAmount();
+                leftToAct.addAll(callers);
+                callers = new ArrayList<>(List.of(player));
+                System.out.println();
+            } else if(action.isFold()){
+                players.remove(player);
+            }
+            System.out.println(action);
         }
-        for(int i = 0; i < actionList.size(); i++){
-            System.out.println(actionList.get(i));
+        deck.deal();
+        System.out.println("Turn comes: ");
+        board[3] = deck.deal();
+        System.out.println("\t" + board[3]);
+
+        leftToAct = new ArrayList<>(players);
+        callers = new ArrayList<>();
+        raiseAmount = 0;
+        for(int i = 0; i < leftToAct.size(); i++){
+            Player player = leftToAct.get(i);
+            List<Action> options;
+            if(raiseAmount == 0){
+                options = new ArrayList<>(Arrays.asList(
+                        Action.fold(player),
+                        Action.check(player),
+                        Action.bet(player, pot/2)));
+            } else{
+                options = new ArrayList<>(Arrays.asList(
+                        Action.fold(player),
+                        Action.call(player, raiseAmount),
+                        Action.raise(player,2 * raiseAmount)));
+            }
+
+            Action action = options.get(player.getDecider().act(options));
+            actionList.add(action);
+
+            if(action.isCall() || action.isCheck()){
+                pot += player.bet(raiseAmount);
+                callers.add(player);
+            } else if(action.isRaise() || action.isBet()){
+                pot += player.bet(action.getAmount());
+                raiseAmount = action.getAmount();
+                leftToAct.addAll(callers);
+                callers = new ArrayList<>(List.of(player));
+                System.out.println();
+            } else if(action.isFold()){
+                players.remove(player);
+            }
+            System.out.println(action);
         }
+
+        deck.deal();
+        System.out.println("River comes: ");
+        board[4] = deck.deal();
+        System.out.println("\t" + board[4]);
+
+        leftToAct = new ArrayList<>(players);
+        callers = new ArrayList<>();
+        raiseAmount = 0;
+        for(int i = 0; i < leftToAct.size(); i++){
+            Player player = leftToAct.get(i);
+            List<Action> options;
+            if(raiseAmount == 0){
+                options = new ArrayList<>(Arrays.asList(
+                        Action.fold(player),
+                        Action.check(player),
+                        Action.bet(player, pot/2)));
+            } else{
+                options = new ArrayList<>(Arrays.asList(
+                        Action.fold(player),
+                        Action.call(player, raiseAmount),
+                        Action.raise(player,2 * raiseAmount)));
+            }
+
+            Action action = options.get(player.getDecider().act(options));
+            actionList.add(action);
+
+            if(action.isCall() || action.isCheck()){
+                pot += player.bet(raiseAmount);
+                callers.add(player);
+            } else if(action.isRaise() || action.isBet()){
+                pot += player.bet(action.getAmount());
+                raiseAmount = action.getAmount();
+                leftToAct.addAll(callers);
+                callers = new ArrayList<>(List.of(player));
+                System.out.println();
+            } else if(action.isFold()){
+                players.remove(player);
+            }
+            System.out.println(action);
+        }
+
     }
 }
