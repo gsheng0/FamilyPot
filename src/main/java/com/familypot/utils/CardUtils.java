@@ -20,4 +20,7 @@ public class CardUtils {
         }
         return holeCards;
     }
+    public static String classifyHand(int handRating){
+        return Constants.HAND_RANKINGS[handRating / ((int) (Math.pow(16, 5)))];
+    }
 }

@@ -5,6 +5,8 @@ import com.familypot.model.cards.Card;
 import com.familypot.model.cards.Deck;
 import com.familypot.utils.CardUtils;
 import com.familypot.model.Action;
+import com.familypot.utils.Constants;
+import com.familypot.utils.FileWriter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,8 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
     HandCalculatorService handCalculatorService = new HandCalculatorServiceImpl();
     @Override
     public void runHand(List<Player> players, int littleBlindSize, int bigBlindSize) {
+        FileWriter fileWriter = FileWriter.getInstance();
+        fileWriter.randomizeFilename();
         int pot = players.get(0).bet(littleBlindSize) + players.get(1).bet(bigBlindSize);
         Deck deck = new Deck();
         deck.shuffle();
@@ -45,19 +49,18 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
                 raiseAmount = action.getAmount();
                 leftToAct.addAll(callers);
                 callers = new ArrayList<>(List.of(player));
-                System.out.println();
             } else if(action.isFold()){
                 players.remove(player);
             }
-            System.out.println(action);
+            fileWriter.writeln(action.toString());
         }
-
+        fileWriter.writeln("");
         deck.deal();
-        System.out.println("Flop comes: ");
         for(int i = 0; i < 3; i++){
             board[i] = deck.deal();
-            System.out.println("\t" + board[i]);
+            fileWriter.writeln("\t" + board[i]);
         }
+        fileWriter.writeln("");
 
         leftToAct = new ArrayList<>(players);
         callers = new ArrayList<>();
@@ -88,17 +91,16 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
                 raiseAmount = action.getAmount();
                 leftToAct.addAll(callers);
                 callers = new ArrayList<>(List.of(player));
-                System.out.println();
             } else if(action.isFold()){
                 players.remove(player);
             }
-            System.out.println(action);
+            fileWriter.writeln(action.toString());
         }
         deck.deal();
-        System.out.println("Turn comes: ");
+        fileWriter.writeln("");
         board[3] = deck.deal();
-        System.out.println("\t" + board[3]);
-
+        fileWriter.writeln("\t" + board[3]);
+        fileWriter.writeln("");
         leftToAct = new ArrayList<>(players);
         callers = new ArrayList<>();
         raiseAmount = 0;
@@ -128,18 +130,17 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
                 raiseAmount = action.getAmount();
                 leftToAct.addAll(callers);
                 callers = new ArrayList<>(List.of(player));
-                System.out.println();
             } else if(action.isFold()){
                 players.remove(player);
             }
-            System.out.println(action);
+            fileWriter.writeln(action.toString());
         }
 
         deck.deal();
-        System.out.println("River comes: ");
+        fileWriter.writeln("");
         board[4] = deck.deal();
-        System.out.println("\t" + board[4]);
-
+        fileWriter.writeln("\t" + board[4]);
+        fileWriter.writeln("");
         leftToAct = new ArrayList<>(players);
         callers = new ArrayList<>();
         raiseAmount = 0;
@@ -169,19 +170,18 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
                 raiseAmount = action.getAmount();
                 leftToAct.addAll(callers);
                 callers = new ArrayList<>(List.of(player));
-                System.out.println();
             } else if(action.isFold()){
                 players.remove(player);
             }
-            System.out.println(action);
+            fileWriter.writeln(action.toString());
         }
         int[] handValues = new int[holeCards.size()];
         for(int i = 0; i < board.length; i++){
-            System.out.println(board[i]);
+            fileWriter.writeln("\t" + board[i].toString());
         }
         for(int i = 0; i < holeCards.size(); i++){
             Card[] cards = holeCards.get(i);
-            System.out.println("Player " + i + " \t\t" + cards[0] + ", " + cards[1]);
+            fileWriter.writeln("Player " + i + " \t\t" + cards[0] + ", " + cards[1]);
             Card[] hand = new Card[7];
             for(int x = 0; x < board.length; x++){
                 hand[x] = board[x];
@@ -198,7 +198,7 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
                 max = handValues[i];
             }
         }
-        System.out.println("Player " + index + " has won");
+        fileWriter.writeln("Player " + index + " has won with " + CardUtils.classifyHand(max));
 
 
 

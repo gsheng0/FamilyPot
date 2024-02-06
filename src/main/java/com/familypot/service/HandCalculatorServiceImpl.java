@@ -35,7 +35,9 @@ public class HandCalculatorServiceImpl implements HandCalculatorService {
             int straightTopCard = -1;
             for(int i = 0; i < suitedValueFrequencyArray.length; i++){
                 if(suitedValueFrequencyArray[i] > 0){
-                    suitCount++;
+                    if(i < 14){
+                        suitCount++;
+                    }
                     straightCount++;
                     if(straightCount > 4){
                         straightTopCard = i;

@@ -14,4 +14,8 @@ public class Constants {
     public static final int FULL_HOUSE = 6;
     public static final int FOUR_OF_A_KIND = 7;
     public static final int STRAIGHT_FLUSH = 8;
+    public static final String[] HAND_RANKINGS = new String[]{
+            "High Card", "One Pair", "Two Pair", "Three of a Kind",
+            "Straight", "Flush", "Full House", "Four of a Kind",
+            "Straight Flush"};
 }
