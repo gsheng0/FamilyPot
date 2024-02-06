@@ -6,26 +6,29 @@ public class Action {
     }
     private ActionType type;
     private int amount;
-    public static Action fold(){
-        return new Action(ActionType.FOLD);
+    private Player player;
+    public static Action fold(Player player){
+        return new Action(player, ActionType.FOLD);
     }
-    public static Action call(int amount){
-        return new Action(ActionType.CALL, amount);
+    public static Action call(Player player, int amount){
+        return new Action(player, ActionType.CALL, amount);
     }
-    public static Action raise(int amount){
-        return new Action(ActionType.RAISE, amount);
+    public static Action raise(Player player, int amount){
+        return new Action(player, ActionType.RAISE, amount);
     }
-    public static Action check(){
-        return new Action(ActionType.CHECK);
+    public static Action check(Player player){
+        return new Action(player, ActionType.CHECK);
     }
-    public static Action bet(int amount){
-        return new Action(ActionType.BET, amount);
+    public static Action bet(Player player, int amount){
+        return new Action(player, ActionType.BET, amount);
     }
-    private Action(ActionType type) {
+    private Action(Player player, ActionType type) {
+        this.player = player;
         this.type = type;
         this.amount = 0;
     }
-    private Action(ActionType type, int amount) {
+    private Action(Player player, ActionType type, int amount) {
+        this.player = player;
         this.type = type;
         this.amount = amount;
     }
@@ -53,9 +56,9 @@ public class Action {
     @Override
     public String toString() {
         if (type == ActionType.BET || type == ActionType.RAISE || type == ActionType.CALL) {
-            return type + " " + amount;
+            return player.getName() + " " + type + " " + amount;
         } else {
-            return type.toString();
+            return player.getName() + " " + type.toString();
         }
     }
 }

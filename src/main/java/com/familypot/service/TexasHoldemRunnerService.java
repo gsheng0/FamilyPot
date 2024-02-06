@@ -32,7 +32,7 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
         List<Player> callers = new ArrayList<>();
         for(int i = 0; i < leftToAct.size(); i++){
             Player player = leftToAct.get(i);
-            List<Action> options = new ArrayList<>(Arrays.asList(Action.fold(), Action.call(raiseAmount), Action.raise(2 * raiseAmount)));
+            List<Action> options = new ArrayList<>(Arrays.asList(Action.fold(player), Action.call(player, raiseAmount), Action.raise(player,2 * raiseAmount)));
             Action action = options.get(player.getDecider().act(options));
             actionList.add(action);
 
@@ -59,6 +59,8 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
         for(int i = 0; i < leftToAct.size(); i++){
 
         }
-        System.out.println(actionList);
+        for(int i = 0; i < actionList.size(); i++){
+            System.out.println(actionList.get(i));
+        }
     }
 }
