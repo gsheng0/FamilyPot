@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class TexasHoldemRunnerService implements PokerRunnerService{
+    HandCalculatorService handCalculatorService = new HandCalculatorServiceImpl();
     @Override
     public void runHand(List<Player> players, int littleBlindSize, int bigBlindSize) {
         int pot = players.get(0).bet(littleBlindSize) + players.get(1).bet(bigBlindSize);
@@ -174,6 +175,32 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
             }
             System.out.println(action);
         }
+        int[] handValues = new int[holeCards.size()];
+        for(int i = 0; i < board.length; i++){
+            System.out.println(board[i]);
+        }
+        for(int i = 0; i < holeCards.size(); i++){
+            Card[] cards = holeCards.get(i);
+            System.out.println("Player " + i + " \t\t" + cards[0] + ", " + cards[1]);
+            Card[] hand = new Card[7];
+            for(int x = 0; x < board.length; x++){
+                hand[x] = board[x];
+            }
+            hand[5] = cards[0];
+            hand[6] = cards[1];
+            handValues[i] = handCalculatorService.calculateHandRepresentation(hand);
+        }
+        int max = -1;
+        int index = -1;
+        for(int i = 0; i < handValues.length; i++){
+            if(handValues[i] > max){
+                index = i;
+                max = handValues[i];
+            }
+        }
+        System.out.println("Player " + index + " has won");
+
+
 
     }
 }
