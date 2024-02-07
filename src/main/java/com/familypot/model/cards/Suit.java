@@ -10,12 +10,23 @@ public class Suit {
     private Suit(String name){
         this.name = name;
     }
-
     @Override
     public boolean equals(Object obj) {
         if(!(obj instanceof Suit other)){
             return false;
         }
         return other.name.equals(this.name);
+    }
+    public static Suit parseSuit(String suit){
+        if(suit.equals("Hearts")){
+            return HEARTS;
+        } else if(suit.equals("Diamonds")){
+            return DIAMONDS;
+        } else if(suit.equals("Clubs")){
+            return CLUBS;
+        } else if(suit.equals("Spades")){
+            return SPADES;
+        }
+        throw new RuntimeException("Illegal suit name: " + suit);
     }
 }

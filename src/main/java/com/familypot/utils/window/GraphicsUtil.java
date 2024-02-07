@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import com.familypot.model.cards.Card;
 import com.familypot.model.cards.Suit;
+import com.familypot.utils.Constants;
 
 import javax.imageio.ImageIO;
 
@@ -27,11 +28,29 @@ public class GraphicsUtil {
         }
         g.setFont(new Font("Times New Roman", Font.BOLD, 32));
         g.drawString(card.rank.symbol, x + 5, y + 30);
-        drawSpade(x + 10, y + 35);
+        if(card.suit.equals(Suit.DIAMONDS)){
+            drawDiamond(x + 10, y + 35);
+        } else if(card.suit.equals(Suit.SPADES)){
+            drawSpade(x + 10, y + 35);
+        } else if(card.suit.equals(Suit.CLUBS)){
+            drawClub(x + 10, y + 35);
+        } else if(card.suit.equals(Suit.HEARTS)){
+            drawHeart(x + 10, y + 35);
+        }
+
     }
 
     public static void drawSpade(int x, int y){
-        drawImage("src/main/resources/spade.png", x, y, 80, 80);
+        drawImage(Constants.RESOURCES_PATH + "spade.png", x, y, 80, 80);
+    }
+    public static void drawClub(int x, int y){
+        drawImage(Constants.RESOURCES_PATH + "club.png", x, y, 80, 80);
+    }
+    public static void drawHeart(int x, int y){
+        drawImage(Constants.RESOURCES_PATH + "heart.png", x, y, 80, 80);
+    }
+    public static void drawDiamond(int x, int y){
+        drawImage(Constants.RESOURCES_PATH + "diamond.png", x, y, 80, 80);
     }
     public static void drawImage(String imagePath, int x, int y, int width, int height) {
         try {

@@ -78,4 +78,8 @@ public class Card {
         builder.append(suit.name);
         return builder.toString();
     }
+    public static Card parseCard(String cardName){
+        String[] parts = cardName.split(" of ");
+        return new Card(Rank.parseRank(parts[0]), Suit.parseSuit(parts[1]));
+    }
 }

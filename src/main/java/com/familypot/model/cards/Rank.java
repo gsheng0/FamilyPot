@@ -37,9 +37,40 @@ public class Rank implements Comparable<Rank>{
     public boolean lessThan(Rank other){
         return this.number < other.number;
     }
-
     @Override
     public int compareTo(Rank o) {
         return Integer.compare(this.number, o.number);
+    }
+    public static Rank parseRank(String rankName) {
+        switch (rankName) {
+            case "Ace":
+                return Rank.ACE;
+            case "Two":
+                return Rank.TWO;
+            case "Three":
+                return Rank.THREE;
+            case "Four":
+                return Rank.FOUR;
+            case "Five":
+                return Rank.FIVE;
+            case "Six":
+                return Rank.SIX;
+            case "Seven":
+                return Rank.SEVEN;
+            case "Eight":
+                return Rank.EIGHT;
+            case "Nine":
+                return Rank.NINE;
+            case "Ten":
+                return Rank.TEN;
+            case "Jack":
+                return Rank.JACK;
+            case "Queen":
+                return Rank.QUEEN;
+            case "King":
+                return Rank.KING;
+            default:
+                throw new IllegalArgumentException("Invalid rank name: " + rankName);
+        }
     }
 }

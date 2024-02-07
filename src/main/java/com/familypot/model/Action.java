@@ -32,6 +32,7 @@ public class Action {
         this.type = type;
         this.amount = amount;
     }
+    public Player getPlayer() { return player; }
     public ActionType getType() {
         return type;
     }
@@ -60,6 +61,26 @@ public class Action {
         } else {
             return "[" + player.getName() + "]: " + type.toString();
         }
+    }
+    public static Action parseAction(String action){
+        String playerName = action.substring(action.indexOf("["), action.indexOf("]"));
+        String[] parts = action.substring(action.indexOf(":") + 2).split(" " );
+        Player player = new Player(playerName, 1000, options -> 0);
+        for(String part : parts){
+            System.out.println(part);
+        }
+        if(parts[0].equals("CHECK")){
+            return Action.check(player);
+        } else if(parts[0].equals("FOLD")){
+            return Action.fold(player);
+        } else if(parts[0].equals("BET")){
+            return Action.bet(player, Integer.parseInt(parts[1]));
+        } else if(parts[0].equals("CALL")){
+            return Action.call(player, Integer.parseInt(parts[1]));
+        } else if(parts[0].equals("RAISE")){
+            return Action.raise(player, Integer.parseInt(parts[1]));
+        }
+        throw new RuntimeException("Invalid action format: " + action);
     }
 }
 
