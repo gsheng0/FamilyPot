@@ -26,7 +26,7 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
 
         for(int i = 0; i < holeCards.size(); i++) {
             Card[] cards = holeCards.get(i);
-            fileWriter.writeln("[Player " + i + "]: \t" + cards[0] + ", " + cards[1]);
+            fileWriter.writeln("[" + players.get(i).getName() + "]: \t" + cards[0] + ", " + cards[1]);
         }
         fileWriter.writeln("");
 

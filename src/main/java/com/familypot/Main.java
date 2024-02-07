@@ -2,6 +2,7 @@ package com.familypot;
 
 import com.familypot.model.Action;
 import com.familypot.model.Decider;
+import com.familypot.model.Merritt;
 import com.familypot.model.Player;
 import com.familypot.model.cards.Card;
 import com.familypot.service.HandCalculatorService;
@@ -29,6 +30,7 @@ public class Main {
                 }
             }));
         }
+        players.add(new Player("Merritt", 10000000, new Merritt()));
         TexasHoldemRunnerService runnerService = new TexasHoldemRunnerService();
         runnerService.runHand(players, 1, 2);
     }
