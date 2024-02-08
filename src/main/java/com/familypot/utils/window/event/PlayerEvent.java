@@ -8,4 +8,7 @@ public class PlayerEvent extends Event{
         super(action.getPlayer().getName());
         this.action = action;
     }
+    public Action getAction(){
+        return action;
+    }
 }

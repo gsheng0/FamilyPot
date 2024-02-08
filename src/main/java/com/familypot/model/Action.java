@@ -66,9 +66,6 @@ public class Action {
         String playerName = action.substring(action.indexOf("["), action.indexOf("]"));
         String[] parts = action.substring(action.indexOf(":") + 2).split(" " );
         Player player = new Player(playerName, 1000, options -> 0);
-        for(String part : parts){
-            System.out.println(part);
-        }
         if(parts[0].equals("CHECK")){
             return Action.check(player);
         } else if(parts[0].equals("FOLD")){

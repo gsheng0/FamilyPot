@@ -18,39 +18,39 @@ public class GraphicsUtil {
     }
     public static void drawCard(Card card, int x, int y){
         g.setColor(Color.WHITE);
-        g.fillRect(x, y, 100, 140);
+        g.fillRect(x, y, WindowConfigs.CARD_WIDTH, WindowConfigs.CARD_HEIGHT);
 
         g.setColor(Color.BLACK);
-        g.drawRect(x, y, 100, 140);
+        g.drawRect(x, y, WindowConfigs.CARD_WIDTH, WindowConfigs.CARD_HEIGHT);
 
         if(card.suit.equals(Suit.DIAMONDS) || card.suit.equals(Suit.HEARTS)){
             g.setColor(Color.RED);
         }
-        g.setFont(new Font("Times New Roman", Font.BOLD, 32));
-        g.drawString(card.rank.symbol, x + 5, y + 30);
+        g.setFont(new Font("Times New Roman", Font.BOLD, WindowConfigs.CARD_FONT_SIZE));
+        g.drawString(card.rank.symbol, x + WindowConfigs.CARD_SYMBOL_X_OFFSET, y + WindowConfigs.CARD_SYMBOL_Y_OFFSET);
         if(card.suit.equals(Suit.DIAMONDS)){
-            drawDiamond(x + 10, y + 35);
+            drawDiamond(x + WindowConfigs.CARD_SUIT_X_OFFSET, y + WindowConfigs.CARD_SUIT_Y_OFFSET);
         } else if(card.suit.equals(Suit.SPADES)){
-            drawSpade(x + 10, y + 35);
+            drawSpade(x + WindowConfigs.CARD_SUIT_X_OFFSET, y + WindowConfigs.CARD_SUIT_Y_OFFSET);
         } else if(card.suit.equals(Suit.CLUBS)){
-            drawClub(x + 10, y + 35);
+            drawClub(x + WindowConfigs.CARD_SUIT_X_OFFSET, y + WindowConfigs.CARD_SUIT_Y_OFFSET);
         } else if(card.suit.equals(Suit.HEARTS)){
-            drawHeart(x + 10, y + 35);
+            drawHeart(x + WindowConfigs.CARD_SUIT_X_OFFSET, y + WindowConfigs.CARD_SUIT_Y_OFFSET);
         }
 
     }
 
     public static void drawSpade(int x, int y){
-        drawImage(Constants.RESOURCES_PATH + "spade.png", x, y, 80, 80);
+        drawImage(Constants.RESOURCES_PATH + "spade.png", x, y, WindowConfigs.CARD_SUIT_SIZE, WindowConfigs.CARD_SUIT_SIZE);
     }
     public static void drawClub(int x, int y){
-        drawImage(Constants.RESOURCES_PATH + "club.png", x, y, 80, 80);
+        drawImage(Constants.RESOURCES_PATH + "club.png", x, y, WindowConfigs.CARD_SUIT_SIZE, WindowConfigs.CARD_SUIT_SIZE);
     }
     public static void drawHeart(int x, int y){
-        drawImage(Constants.RESOURCES_PATH + "heart.png", x, y, 80, 80);
+        drawImage(Constants.RESOURCES_PATH + "heart.png", x, y, WindowConfigs.CARD_SUIT_SIZE, WindowConfigs.CARD_SUIT_SIZE);
     }
     public static void drawDiamond(int x, int y){
-        drawImage(Constants.RESOURCES_PATH + "diamond.png", x, y, 80, 80);
+        drawImage(Constants.RESOURCES_PATH + "diamond.png", x, y, WindowConfigs.CARD_SUIT_SIZE, WindowConfigs.CARD_SUIT_SIZE);
     }
     public static void drawImage(String imagePath, int x, int y, int width, int height) {
         try {
