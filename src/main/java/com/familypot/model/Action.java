@@ -63,7 +63,7 @@ public class Action {
         }
     }
     public static Action parseAction(String action){
-        String playerName = action.substring(action.indexOf("["), action.indexOf("]"));
+        String playerName = action.substring(action.indexOf("[") + 1, action.indexOf("]"));
         String[] parts = action.substring(action.indexOf(":") + 2).split(" " );
         Player player = new Player(playerName, 1000, options -> 0);
         if(parts[0].equals("CHECK")){

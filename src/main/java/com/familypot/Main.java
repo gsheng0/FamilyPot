@@ -16,7 +16,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Player> players = new ArrayList<>();
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 7; i++){
             players.add(new Player("Player " + i, 1000, new Decider() {
                 @Override
                 public int act(List<Action> options) {

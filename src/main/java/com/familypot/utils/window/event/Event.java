@@ -18,4 +18,12 @@ public class Event {
         }
         return new PlayerEvent(Action.parseAction(eventString));
     }
+    public String toString(){
+        if(this instanceof PlayerEvent playerEvent){
+            return playerEvent.getActor() + " --> " + playerEvent.getAction().toString();
+        } else if(this instanceof CardEvent cardEvent){
+            return cardEvent.getCard().toString();
+        }
+        return actor;
+    }
 }

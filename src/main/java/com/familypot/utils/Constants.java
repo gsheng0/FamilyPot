@@ -19,4 +19,5 @@ public class Constants {
             "Straight", "Flush", "Full House", "Four of a Kind",
             "Straight Flush"};
     public static final String RESOURCES_PATH = "src/main/resources/";
+    public static final String BASE_DIRECTORY = "/Users/gsheng/Downloads/";
 }

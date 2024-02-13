@@ -181,7 +181,7 @@ public class TexasHoldemRunnerService implements PokerRunnerService{
             }
             fileWriter.writeln(action.toString());
         }
-        fileWriter.writeln("");
+        fileWriter.writeln("END");
         int[] handValues = new int[holeCards.size()];
         for(int i = 0; i < board.length; i++){
             fileWriter.writeln("\t" + board[i].toString());

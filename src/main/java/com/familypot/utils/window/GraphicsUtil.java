@@ -26,7 +26,7 @@ public class GraphicsUtil {
         if(card.suit.equals(Suit.DIAMONDS) || card.suit.equals(Suit.HEARTS)){
             g.setColor(Color.RED);
         }
-        g.setFont(new Font("Times New Roman", Font.BOLD, WindowConfigs.CARD_FONT_SIZE));
+        g.setFont(WindowConfigs.DEFAULT_FONT);
         g.drawString(card.rank.symbol, x + WindowConfigs.CARD_SYMBOL_X_OFFSET, y + WindowConfigs.CARD_SYMBOL_Y_OFFSET);
         if(card.suit.equals(Suit.DIAMONDS)){
             drawDiamond(x + WindowConfigs.CARD_SUIT_X_OFFSET, y + WindowConfigs.CARD_SUIT_Y_OFFSET);
@@ -39,7 +39,18 @@ public class GraphicsUtil {
         }
 
     }
-
+//    public static void drawSpade(int x, int y){
+//        g.drawString("S", x, y);
+//    }
+//    public static void drawDiamond(int x, int y){
+//        g.drawString("D", x, y);
+//    }
+//    public static void drawClub(int x, int y){
+//        g.drawString("C", x, y);
+//    }
+//    public static void drawHeart(int x, int y){
+//        g.drawString("H", x, y);
+//    }
     public static void drawSpade(int x, int y){
         drawImage(Constants.RESOURCES_PATH + "spade.png", x, y, WindowConfigs.CARD_SUIT_SIZE, WindowConfigs.CARD_SUIT_SIZE);
     }
