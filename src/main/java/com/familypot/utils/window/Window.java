@@ -118,19 +118,23 @@ public class Window extends JFrame implements MouseListener, KeyListener {
 
         List<Card[]> holeCards = tableState.getHoleCards();
         for(int i = 0; i < holeCards.size(); i++){
-            int x = WindowConfigs.HOLE_CARD_COORDS[i][0];
-            int y = WindowConfigs.HOLE_CARD_COORDS[i][1];
-            GraphicsUtil.drawCard(holeCards.get(i)[0], x, y);
+            if(tableState.getFoldedPlayers().contains(i)){
+                continue;
+            }
+            int holeCardXCoord = WindowConfigs.HOLE_CARD_COORDS[i][0];
+            int holeCardYCoord = WindowConfigs.HOLE_CARD_COORDS[i][1];
+            int playerXCoord = WindowConfigs.PLAYER_COORDS[i][0];
+            int playerYCoord = WindowConfigs.PLAYER_COORDS[i][1];
+
+            GraphicsUtil.drawCard(holeCards.get(i)[0], holeCardXCoord, holeCardYCoord);
             GraphicsUtil.drawCard(holeCards.get(i)[1],
-                    x + WindowConfigs.BOARD_CARDS_X_AXIS_SPACING, y);
+                    holeCardXCoord + WindowConfigs.BOARD_CARDS_X_AXIS_SPACING, holeCardYCoord);
+            g.setColor(Color.BLACK);
+            g.drawRect(playerXCoord, playerYCoord, 50, 50);
+            g.drawString("Stack: " + 1000, playerXCoord + 5, playerYCoord + 70);
+
         }
 
-        for(int[] coords : WindowConfigs.PLAYER_COORDS){
-            int x = coords[0];
-            int y = coords[1];
-            g.drawRect(x, y, 50, 50);
-            g.drawString("Stack: " + 1000, x + 5, y + 70);
-        }
         g.drawString("Pot: " + tableState.getPot(), 500, 100);
         g.drawString("" + index, 10, 10);
 //        GraphicsUtil.drawCard(Card.ACE_OF_HEARTS, x, y);
