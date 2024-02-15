@@ -16,7 +16,6 @@ public class TableState {
     private HashMap<String, Integer> playerNameToIndexMap;
     private List<String> actionNames;
     private int pot = 0;
-
     public TableState(){
         boardCards = new ArrayList<>();
         players = new ArrayList<>();
@@ -64,6 +63,7 @@ public class TableState {
             }
         }
     }
+
     public List<Card> getBoardCards() { return boardCards; }
     public List<Player> getPlayers() { return players; }
     public HashMap<String, Integer> getPlayerNameToIndexMap() { return playerNameToIndexMap; }

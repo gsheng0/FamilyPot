@@ -3,6 +3,8 @@ package com.familypot.utils.window;
 import java.awt.*;
 
 public class WindowConfigs {
+    public static final int WINDOW_WIDTH = 1200;
+    public static final int WINDOW_HEIGHT = 800;
     public static final int CARD_WIDTH = 75;
     public static final int CARD_HEIGHT = 105;
     public static final int CARD_SUIT_SIZE = 60;

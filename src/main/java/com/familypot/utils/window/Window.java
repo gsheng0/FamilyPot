@@ -28,22 +28,13 @@ public class Window extends JFrame implements MouseListener, KeyListener {
     public Window() {
         setTitle("Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(WindowConfigs.WINDOW_WIDTH, WindowConfigs.WINDOW_HEIGHT);
         addMouseListener(this);
-//        JFileChooser fileChooser = new JFileChooser();
-//        int returnValue = fileChooser.showOpenDialog(null);
-//        if (returnValue == JFileChooser.APPROVE_OPTION) {
-//            File selectedFile = fileChooser.getSelectedFile();
-//            filePath = selectedFile.getAbsolutePath();
-//            readFile(filePath);
-//        }
-//        String content = readFile(filePath);
-//        System.out.println(content);
     }
     public Window(String actionsString){
         setTitle("Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(WindowConfigs.WINDOW_WIDTH, WindowConfigs.WINDOW_HEIGHT);
         addMouseListener(this);
         addKeyListener(this);
         String[] lines = actionsString.split("\n");
@@ -80,22 +71,9 @@ public class Window extends JFrame implements MouseListener, KeyListener {
 //        }
     }
 
-    private String readFile(String filePath) {
-        StringBuilder content = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return content.toString();
-    }
-
     public void paint(Graphics g) {
         g.setColor(WindowConfigs.TABLE_COLOR);
-        g.fillRect(0, 0, 1200, 1000);
+        g.fillRect(0, 0, WindowConfigs.WINDOW_WIDTH, WindowConfigs.WINDOW_HEIGHT);
         g.setFont(WindowConfigs.DEFAULT_FONT);
         GraphicsUtil.setGraphics(g);
 
