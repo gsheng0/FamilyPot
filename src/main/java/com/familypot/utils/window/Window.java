@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Window extends JFrame implements MouseListener, KeyListener {
-    private String filePath;
     private List<Event> events;
     private HashMap<String, Card[]> nameToHoleCardMap;
     private TableState tableState;
@@ -164,7 +163,7 @@ public class Window extends JFrame implements MouseListener, KeyListener {
 
     }
     public static void main(String[] args) {
-        String text = FileHandler.readFile("The Perfect yet Bad Poker Hand");
+        String text = FileHandler.readFile("The Lovely yet Pathetic Poker Hand");
         new Window(text).setVisible(true);
     }
 }
