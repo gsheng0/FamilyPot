@@ -3,9 +3,7 @@ package com.familypot.service;
 import com.familypot.model.cards.Card;
 import com.familypot.model.cards.Rank;
 import com.familypot.model.cards.Suit;
-import com.familypot.service.HandCalculatorService;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -13,18 +11,21 @@ import java.util.List;
 import static com.familypot.utils.Constants.*;
 
 public class HandCalculatorServiceImpl implements HandCalculatorService {
-    public int calculateHandRepresentation(List<Card> cards) {
+    @SafeVarargs
+    public final int calculateHandRepresentation(List<Card>... cardLists){
         HashMap<Suit, int[]> suitMap = new HashMap<>();
         int[] valueFrequencyArray = new int[15];
-        for (Card card : cards) {
-            if (!suitMap.containsKey(card.suit)) {
-                suitMap.put(card.suit, new int[15]);
-            }
-            suitMap.get(card.suit)[card.rank.number]++;
-            valueFrequencyArray[card.rank.number]++;
-            if (card.rank.equals(Rank.ACE)) {
-                valueFrequencyArray[1]++;
-                suitMap.get(card.suit)[1]++;
+        for(List<Card> cardList : cardLists){
+            for (Card card : cardList) {
+                if (!suitMap.containsKey(card.suit)) {
+                    suitMap.put(card.suit, new int[15]);
+                }
+                suitMap.get(card.suit)[card.rank.number]++;
+                valueFrequencyArray[card.rank.number]++;
+                if (card.rank.equals(Rank.ACE)) {
+                    valueFrequencyArray[1]++;
+                    suitMap.get(card.suit)[1]++;
+                }
             }
         }
         int bestNonSequentialHand = calculateBestNonSequentialHand(valueFrequencyArray);

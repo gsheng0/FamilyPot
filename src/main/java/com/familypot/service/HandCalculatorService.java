@@ -5,5 +5,5 @@ import com.familypot.model.cards.Card;
 import java.util.List;
 
 public interface HandCalculatorService {
-    int calculateHandRepresentation(List<Card> cards);
+    int calculateHandRepresentation(List<Card>... cards);
 }

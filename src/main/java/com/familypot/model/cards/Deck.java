@@ -2,6 +2,7 @@ package com.familypot.model.cards;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 public class Deck {
@@ -75,6 +76,9 @@ public class Deck {
     }
     public int getCardStackSize(){
         return cardStack.size();
+    }
+    public List<Card> getRemainingCards(){
+        return cardStack.stream().toList();
     }
 
     private static int randomInteger(int start, int end){

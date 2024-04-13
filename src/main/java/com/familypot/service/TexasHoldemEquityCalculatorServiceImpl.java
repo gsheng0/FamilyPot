@@ -4,14 +4,14 @@ import com.familypot.model.cards.Card;
 import com.familypot.model.cards.Deck;
 import com.familypot.model.cards.Suit;
 
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class TexasHoldemEquityCalculatorServiceImpl implements EquityCalculatorService{
     @Override
-    public double calculateEquity(Card[] hand1, Card[] hand2, Card[] board) {
-         boolean isPocketPair1 = hand1[0].rank.equals(hand2[1].rank);
-         boolean isPocketPair2 = hand2[0].rank.equals(hand2[1].rank);
+    public double calculateEquity(List<Card> hand1, List<Card> hand2, List<Card> board) {
+         boolean isPocketPair1 = hand1.get(0).rank.equals(hand1.get(1).rank);
+         boolean isPocketPair2 = hand2.get(0).rank.equals(hand2.get(1).rank);
          Deck deck = new Deck();
          for(Card card : hand1){
              deck.deal(card);

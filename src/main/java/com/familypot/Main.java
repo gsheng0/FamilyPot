@@ -8,9 +8,7 @@ import com.familypot.model.cards.Card;
 import com.familypot.model.cards.Deck;
 import com.familypot.model.cards.Rank;
 import com.familypot.model.cards.Suit;
-import com.familypot.service.HandCalculatorService;
-import com.familypot.service.HandCalculatorServiceImpl;
-import com.familypot.service.TexasHoldemRunnerService;
+import com.familypot.service.*;
 import com.familypot.utils.Constants;
 
 import java.util.*;
@@ -35,8 +33,11 @@ public class Main {
 //        players.add(new Player("Merritt", 10000000, new Merritt()));
 //        TexasHoldemRunnerService runnerService = new TexasHoldemRunnerService();
 //        runnerService.runHand(players, 1, 2);
-        HashMap<String, Long> hands = calculateHandFrequencies();
-        printSortedHashMap(hands);
+//        HashMap<String, Long> hands = calculateHandFrequencies();
+//        printSortedHashMap(hands);
+        EquityCalculatorService equityCalculatorService = new BruteForceTexasHoldemEquityCalculatorServiceImpl();
+        System.out.println(equityCalculatorService.calculateEquity(List.of(Card.ACE_OF_CLUBS, Card.ACE_OF_SPADES), List.of(Card.KING_OF_CLUBS, Card.KING_OF_SPADES), new ArrayList<>()));
+
     }
     public static void printSortedHashMap(HashMap<String, Long> hashMap) {
         // Convert the HashMap into a List of Map.Entry objects
