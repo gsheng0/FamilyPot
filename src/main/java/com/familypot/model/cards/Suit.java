@@ -29,4 +29,18 @@ public class Suit {
         }
         throw new RuntimeException("Illegal suit name: " + suit);
     }
+
+    @Override
+    public int hashCode() {
+        if(this.name.equals("Heart")){
+            return 0;
+        } else if(this.name.equals("Diamonds")){
+            return 1;
+        } else if(this.name.equals("Clubs")){
+            return 2;
+        } else if(this.name.equals("Spades")){
+            return 3;
+        }
+        throw new RuntimeException("Illegal suit name: " + this.name);
+    }
 }
